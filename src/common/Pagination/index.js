@@ -6,7 +6,7 @@ import {
     MobileHide,
     MiddleContainer
 } from "./styled";
-import { SmallTile, SmallGreyText } from "../common/styled";
+import { SmallTile, SmallGreyText } from "../styled";
 
 const Pagination = () => {
     return (

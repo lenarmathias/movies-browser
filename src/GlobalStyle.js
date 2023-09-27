@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.bgLightGrey};
     margin: 150px auto 103px;
     width: 1368px;
-    max-width: 90%;
+    max-width: 85%;
     font-family: "Poppins", sans-serif;
   }
 

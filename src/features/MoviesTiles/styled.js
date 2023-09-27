@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ReactComponent as MissingPosterIcon } from "../images/missingMoviePoster.svg";
-import { ReactComponent as StarIcon } from "../images/shape-star.svg";
+import { ReactComponent as MissingPosterIcon } from "../../images/missingMoviePoster.svg";
+import { ReactComponent as StarIcon } from "../../images/shape-star.svg";
 
 
 const boxShadowColor = ({ theme }) => theme.color.boxShadow;
@@ -23,15 +23,17 @@ export const ContentLink = styled(Link)`
 
 export const MovieTile = styled.div`
     width: 324px;
-    height: 650px;
+    min-height: 650px;
+    height: auto;
     padding: 16px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.breakpoints.mobile};
     box-shadow: 0px 4px 12px 0px ${boxShadowColor};
-    position: relative;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
         min-width: 288px;
+        width: auto;
+        min-height: auto;
         height: 201px;
         display: grid;
         grid-template-columns: max-content 1fr;
@@ -69,7 +71,6 @@ export const MissingMoviePosterIcon = styled(MissingPosterIcon)`
 `;
 
 export const MovieInfoContainer = styled.div`
-    height: 100%;
     margin-top: 16px;
     display: grid;
     grid-template-rows: repeat(3, max-content);
@@ -100,8 +101,8 @@ export const GenresContainer = styled.div`
 `;
 
 export const RatingContainer = styled.div`
+    margin-top: 10px;
     height: 24px;
-    position: absolute;
     bottom: 16px;
     left: 16px;
     display: grid;
@@ -110,7 +111,6 @@ export const RatingContainer = styled.div`
     grid-gap: 12px;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-        position: static;
         height: 16px;
         grid-gap: 7px;
     }
@@ -133,7 +133,7 @@ export const RatingNumber = styled.p`
     font-weight: 600;
     line-height: 150%;
     text-decoration: none;
-    color: ${({theme}) => theme.color.black};
+    color: ${({ theme }) => theme.color.black};
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
         font-size: 13px;

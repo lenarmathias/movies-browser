@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectMoviesList } from "../features/MovieList/movieListSlice";
+import { selectMoviesList, selectGenres } from "../MovieList/movieListSlice";
 import {
     MoviesTilesWrapper,
     ContentLink,
@@ -15,11 +15,16 @@ import {
     RatingStarIcon,
     RatingNumber,
 } from "./styled";
-import { SmallGreyText, SmallTile } from "../common/styled";
+import { SmallGreyText, SmallTile } from "../../common/styled";
 
 const MoviesTiles = () => {
     const moviesPromise = useSelector(state => selectMoviesList(state));
     const [popularMovies, setPopularMovies] = useState([]);
+    console.log(moviesPromise);
+
+    const genresPromise = useSelector(state => selectGenres(state));
+    const [movieGenres, setMovieGenres] = useState([]);
+
     const posterUrl = "https://image.tmdb.org/t/p/original";
 
     useEffect(() => {
@@ -27,24 +32,32 @@ const MoviesTiles = () => {
             try {
                 const movies = await moviesPromise;
                 setPopularMovies(movies.results);
+
+                const genres = await genresPromise;
+                setMovieGenres(genres);
             } catch (error) {
                 console.error(error);
             }
         }
 
         fetchPopularMovies();
-    }, [moviesPromise]);
+    }, [moviesPromise, genresPromise]);
 
     const getReleaseYear = (releaseDate) => {
         const dateParts = releaseDate.split("-");
         return dateParts[0];
     };
 
+    const mapGenreIdToNames = (genreId) => {
+        const genre = movieGenres.find((genre) => genre.id === genreId);
+        return genre ? genre.name : "Unknown";
+    };
+
     return (
         <MoviesTilesWrapper>
             {popularMovies.map(movie => (
                 <MovieTile key={movie.id}>
-                    <ContentLink to={"/movies/:id"}>
+                    <ContentLink to={`/movies/${movie.id}`}>
                         {movie.poster_path
                             ?
                             <MoviePoster
@@ -67,17 +80,13 @@ const MoviesTiles = () => {
                             {getReleaseYear(movie.release_date)}
                         </SmallGreyText>
                         <GenresContainer>
-                            {/* place to implement .map to generate movie genres with GenreTile */}
-                            {/* examples below */}
-                            <SmallTile>
-                                Action
-                            </SmallTile>
-                            <SmallTile>
-                                Adventure
-                            </SmallTile>
-                            <SmallTile>
-                                Drama
-                            </SmallTile>
+                            {movie.genre_ids && (
+                                movie.genre_ids.map(genreId => (
+                                    <SmallTile key={genreId}>
+                                        {mapGenreIdToNames(genreId)}
+                                    </SmallTile>
+                                ))
+                            )}
                         </GenresContainer>
                         <RatingContainer>
                             <RatingStarIcon />
@@ -91,7 +100,7 @@ const MoviesTiles = () => {
                     </MovieInfoContainer>
                 </MovieTile>
             ))};
-        </MoviesTilesWrapper>
+        </MoviesTilesWrapper >
     )
 };
 
