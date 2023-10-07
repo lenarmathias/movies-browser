@@ -15,7 +15,7 @@ import {
 import { Loading } from "../Actions/Loading/loading";
 import { Error } from "../Actions/Error/error";
 import { NotFound } from "../Actions/NotFound/notFound";
-import { searchQueryParamName } from "../../common/Navigation/Search/searchQueryParamName";
+import { searchQueryParamName } from "../../common/NavigationBar/Search/searchQueryParamName";
 
 const MovieList = () => {
   const popularMovies = useSelector(selectMoviesList);

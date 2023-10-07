@@ -1,8 +1,8 @@
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import NavigationBar from "./common/NavigationBar";
+import { Navigation } from "./common/Navigation";
 import MoviesTiles from "./features/MoviesTiles";
-import Pagination from "./common/Pagination";
+import { Pagination } from "./common/Pagination";
 import MovieDetails from "./features/movie details";
 import { GlobalStyles } from "./GlobalStyle";
 import { theme } from "./theme";
@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <HashRouter>
         <GlobalStyles />
-        <NavigationBar />
+        <Navigation />
 
         <Switch>
           <Route path="/movies/:id">

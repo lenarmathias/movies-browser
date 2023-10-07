@@ -12,7 +12,7 @@ import {
   fetchSearchPeopleLoad,
   fetchPeopleListLoad,
 } from "./peopleSlice";
-import { searchQueryParamName } from "../../common/Navigation/Search/searchQueryParamName";
+import { searchQueryParamName } from "../../common/NavigationBar/Search/searchQueryParamName";
 import { Loading } from "../Actions/Loading/loading";
 import { NotFound } from "../Actions/NotFound/notFound";
 import { Error } from "../Actions/Error/error";
