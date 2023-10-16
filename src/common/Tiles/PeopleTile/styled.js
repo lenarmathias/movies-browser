@@ -5,11 +5,9 @@ import { boxShadowColor } from "../../styled";
 export const PeopleTileContainer = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   width: 100%;
-  max-width: 208px;
-  min-height: 338px;
+  width: 160px;
+  height: 339px;
   height: 100%;
-  display: grid;
-  grid-template-rows: auto, repeat(2, 1fr);
   padding: 16px;
   border-radius: 5px;
   box-shadow: 0px 4px 12px 0px ${boxShadowColor};
@@ -25,14 +23,8 @@ export const PeopleTileContainer = styled.div`
 
 export const PeopleTilePhoto = styled.img`
   width: 100%;
-  max-width: 177px;
   border-radius: 5px;
-  max-height: 237px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.smallMobile}) {
-    height: 178px;
-    width: 120px;
-  }
+  height: 193px;
 `;
 
 export const MissingProfilePhoto = styled(PeopleTilePhoto)`
@@ -42,8 +34,7 @@ export const MissingProfilePhoto = styled(PeopleTilePhoto)`
   justify-content: center;
   width: 100%;
   height: 100%;
-  max-width: 177px;
-  height: 237px;
+  height: 193px;
 
   ${({ $portfolioPhoto }) =>
     $portfolioPhoto &&
@@ -54,19 +45,14 @@ export const MissingProfilePhoto = styled(PeopleTilePhoto)`
       max-height: 564px;
     `}
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.smallMobile}) {
-    height: 178px;
-    width: 120px;
-  }
-
   ${({ $portfolioPhoto }) =>
     $portfolioPhoto &&
     css`
-    width: auto;
-    height: 100%;
-    max-width: auto;
-    max-height: 163px;
-  `}
+      width: auto;
+      height: 100%;
+      max-width: auto;
+      max-height: 163px;
+    `}
 `;
 
 export const MissingProfilePhotoIcon = styled(MissingPhotoIcon)`
